@@ -1,18 +1,25 @@
-﻿using System;
+using System;
+using System.Text.RegularExpressions;
 
-namespace LabWork
+class Program
 {
-    // Даний проект є шаблоном для виконання лабораторних робіт
-    // з курсу "Об'єктно-орієнтоване програмування та патерни проектування"
-    // Необхідно змінювати і дописувати код лише в цьому проекті
-    // Відео-інструкції щодо роботи з github можна переглянути 
-    // за посиланням https://www.youtube.com/@ViktorZhukovskyy/videos 
-    class Program
+    static void Main()
     {
-        static void Main(string[] args)
+        Console.WriteLine("Введіть текст:");
+        string input = Console.ReadLine();
+
+ 
+        string pattern = @"[\(\[](\d+)[\)\]]";
+
+        MatchCollection matches = Regex.Matches(input, pattern);
+
+        Console.WriteLine("\nЗнайдені числа в дужках:");
+        foreach (Match match in matches)
         {
-            
-            Console.WriteLine("Hello World!");
+  
+            Console.WriteLine(match.Groups[1].Value);
         }
+
+        Console.WriteLine($"\nВсього знайдено: {matches.Count}");
     }
 }
